@@ -9,19 +9,7 @@ cursor = conn.cursor()
 # 2. Écris ici ta requête SQL manuellement
 sql_query = """
 
-WITH TotalStock AS (
-    SELECT SUM(quantite_disponible) AS total_quantite
-    FROM stocks
-)
-SELECT
-    s.taille,
-    (CAST(SUM(s.quantite_disponible) AS REAL) * 100.0 / (SELECT total_quantite FROM TotalStock)) AS pourcentage_taille
-FROM
-    stocks s
-GROUP BY
-    s.taille
-ORDER BY
-    pourcentage_taille DESC;
+ SELECT taille, SUM(quantite_disponible) AS quantite_totale_pour_taille, (SUM(quantite_disponible) * 100.0 / (SELECT SUM(quantite_disponible) FROM stocks)) AS pourcentage_du_stock FROM stocks GROUP BY taille ORDER BY pourcentage_du_stock DESC;
     
     
 """
@@ -96,5 +84,7 @@ GROUP BY
     s.taille
 ORDER BY
     pourcentage_taille DESC;
+    
+    SELECT taille, SUM(quantite_disponible) AS quantite_totale_pour_taille, (SUM(quantite_disponible) * 100.0 / (SELECT SUM(quantite_disponible) FROM stocks)) AS pourcentage_du_stock FROM stocks GROUP BY taille ORDER BY pourcentage_du_stock DESC;
 """
 

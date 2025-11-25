@@ -1,11 +1,14 @@
 import os
 from dotenv import load_dotenv  
 from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_core.tools import tool  
+from langchain_core.prompts import ChatPromptTemplate
 
 # 1. On charge les variables du fichier .env
 load_dotenv()
+@tool
 def generate_sql_query(query_text):
-    """Demande à Gemini de traduire le texte en SQL pour la boutique."""
+    """Demande à Gemini de traduire le texte en SQL pour la boutique et le type ideal du visuel."""
     
     # On utilise 'gemini-1.5-flash' car il est rapide, pas cher et excellent en SQL
     llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0)
@@ -37,8 +40,13 @@ def generate_sql_query(query_text):
     - Applique les filtres implicites (taille, marque, couleur) si mentionnés dans la question.
     - Si la demande fait référence à une catégorie de produit (ex : "Pull", "Chaussure"), utilise la table categories et fais le JOIN approprié avec produits.
     - Utilise des JOINs si les informations sont dans plusieurs tables (ex: nom du produit + quantité en stock).
-    - Renvoie une liste pour premier indice Renvoie UNIQUEMENT le code SQL brut. Ne mets PAS de balises markdown (```sql), pas d'introduction, pas d'explication.
-    - Le code doit être prêt à être exécuté par cursor.execute() pour le deuxieme indice renvoie le type de graphique ideal (soit tableau,Line Plots,Pie Charts,Scatter Plots)
+    - ajoute des alias clairs pour les colonnes calculées (ex : total_stock, average_price).
+    - Ne fais PAS de requêtes de modification de données (INSERT, UPDATE, DELETE).
+    - Renvoie comme reponse UNIQUEMENT  un JSON valide suivant ce format exact (sans markdown) :
+    {{
+      "sql": "SELECT ...", (le code SQL brut. Ne mets PAS de balises markdown (```sql), pas d'introduction, pas d'explication.)
+      "viz_type": "..." (le type de graphique ideal soit tableau,Line Plots,Pie Charts,Scatter Plots,Bar Charts)
+    }}
     """
     
     response = llm.invoke(prompt)

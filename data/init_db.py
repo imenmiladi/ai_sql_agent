@@ -115,6 +115,7 @@ stocks_data = [
     
     # Le Pull Zara (P003)
     (prod_map['P003'], 'S', 'Écru', 6, 'D4'),
+    (prod_map['P003'], 'M', 'bleu', 6, 'D4'),
     (prod_map['P003'], 'M', 'Écru', 0, 'D4') # Rupture de stock pour tester l'IA
 ]
 

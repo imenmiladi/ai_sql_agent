@@ -1,0 +1,40 @@
+1.
+« Donne-moi les produits qui n’ont aucun stock disponible, toutes tailles et couleurs confondues. »
+
+2.
+« Affiche les marques qui ont plus de 20 variantes de produits (toutes tailles/couleurs confondues). »
+
+3.
+« Liste les produits qui existent en au moins 5 couleurs différentes. »
+
+4.
+« Donne-moi les catégories où tous les produits ont un prix supérieur à 100. »
+
+5.
+« Trouve les produits dont la composition contient du coton, triés par prix décroissant. »
+
+---
+
+🔥
+ Niveau Expert – Jointures & Agrégations avancées
+6.
+« Donne le nombre total de pièces en stock par marque, classé du plus grand au plus petit. »
+
+7.
+« Quels sont les produits qui existent en au moins 3 tailles différentes mais une seule couleur ? »
+
+8.
+« Liste les produits dont le prix est supérieur au prix moyen de leur catégorie. »
+
+9.
+« Donne-moi le prix minimum, maximum et moyen des produits pour chaque marque. »
+
+10.
+« Trouve les produits dont la matière principale est la même que celle d’un autre produit, mais qui appartiennent à des catégories différentes. »
+
+---
+
+🧠
+ Très difficile – Déductions & logique métier
+11.
+« Trouve les catégories pour lesquelles la somme totale du stock (tous produits) est inférieure à 10. »
